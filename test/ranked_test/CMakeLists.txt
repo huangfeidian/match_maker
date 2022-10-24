@@ -1,0 +1,2 @@
+add_executable(ranked_test ranked_test.cpp)
+target_link_libraries(ranked_test match_maker)

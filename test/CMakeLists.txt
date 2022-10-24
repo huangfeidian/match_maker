@@ -1,0 +1,2 @@
+add_subdirectory(group_test)
+add_subdirectory(ranked_test)
