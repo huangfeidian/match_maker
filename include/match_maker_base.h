@@ -27,8 +27,18 @@ namespace spiritsaway::match_maker
 		std::unordered_map< std::string, std::uint32_t> m_sz_for_team;
 		std::vector<std::vector< candidate_team>> m_teams_by_sz;
 		std::uint64_t m_now_ts;
+		
 	protected:
-		bool search_for_faction(std::vector<std::vector< candidate_team*>> team_ptrs_by_sz, std::vector<candidate_team*>& cur_faction_group, const std::uint32_t remain_capacity, const std::uint32_t cur_team_sz, const std::uint32_t last_choose_idx);
+		struct search_contex
+		{
+			std::uint32_t remain_capacity;
+			std::uint32_t cur_team_sz;
+			std::uint32_t last_choose_idx;
+		};
+		std::vector<search_contex> m_temp_select_teams;
+		bool search_for_faction(const std::vector<std::vector< candidate_team*>>& team_ptrs_by_sz, std::vector<candidate_team*>& cur_faction_group, const std::uint32_t remain_capacity, const std::uint32_t cur_team_sz, const std::uint32_t last_choose_idx);
+		bool search_for_faction_recursive(const std::vector<std::vector< candidate_team*>>& team_ptrs_by_sz, std::vector<candidate_team*>& cur_faction_group, const std::uint32_t remain_capacity, const std::uint32_t cur_team_sz, const std::uint32_t last_choose_idx);
+		bool search_for_faction_non_recursive(const std::vector<std::vector< candidate_team*>>& team_ptrs_by_sz, std::vector<candidate_team*>& cur_faction_group,  std::uint32_t remain_capacity,  std::uint32_t cur_team_sz, const std::uint32_t last_choose_idx);
 	public:
 		match_maker_base(const std::uint32_t faction_num, const std::uint32_t faction_team_sz, const std::uint32_t max_team_player_sz, std::uint64_t now_ts);
 		virtual void add_candidate(const team_info& new_team);

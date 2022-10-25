@@ -33,10 +33,11 @@ namespace spiritsaway::match_maker
 				}
 				temp_faction.clear();
 				team_ptrs_by_sz[i][j]->match_state = std::uint32_t(basic_match_state::candidate_for_faction);
+				temp_faction.push_back(team_ptrs_by_sz[i][j]);
 				if (search_for_faction(team_ptrs_by_sz, temp_faction, m_faction_team_sz - i, i, j))
 				{
 					faction_result.push_back({});
-					temp_faction.push_back(team_ptrs_by_sz[i][j]);
+					faction_result.back().reserve(temp_faction.size());
 					for (auto one_team : temp_faction)
 					{
 						one_team->match_state = std::uint32_t(basic_match_state::in_result);
@@ -45,6 +46,7 @@ namespace spiritsaway::match_maker
 				}
 				else
 				{
+					temp_faction.pop_back();
 					team_ptrs_by_sz[i][j]->match_state = std::uint32_t(basic_match_state::idle);
 					break;
 				}

@@ -189,7 +189,7 @@ void unit_test_6(std::uint32_t faction_team_sz, std::uint32_t max_candidate_team
 	std::vector<team_info> cur_teams;
 	std::uint32_t player_counter = 0;
 	std::uint32_t team_counter = 0;
-	std::uint64_t timer_counter = 10000;
+	std::uint64_t timer_counter = 1000000;
 
 	for (int i = 0; i < max_candidate_team_sz; i++)
 	{
@@ -228,7 +228,8 @@ int main()
 	unit_test_3();
 	unit_test_4();
 	unit_test_5();
-	unit_test_6(5, 3, 1000);
-	unit_test_6(10, 3, 1000);
-	unit_test_6(20, 3, 1000);
+	unit_test_6(5, 3, 10000);
+	unit_test_6(10, 3, 10000);
+	unit_test_6(20, 3, 10000);
+	unit_test_6(43, 3, 10000);
 }
