@@ -79,7 +79,7 @@ namespace spiritsaway::match_maker
 				}
 				cur_team_ptr->match_state = std::uint32_t(basic_match_state::candidate_for_faction);
 
-				if (search_for_faction(team_ptrs_by_sz, cur_faction_group, remain_capacity - cur_team_sz, cur_team_sz, i + 1))
+				if (search_for_faction(team_ptrs_by_sz, cur_faction_group, remain_capacity - cur_team_sz, cur_team_sz, i))
 				{
 					cur_faction_group.push_back(cur_team_ptr);
 					return true;
@@ -104,7 +104,7 @@ namespace spiritsaway::match_maker
 					continue;
 				}
 				cur_team_ptr->match_state = std::uint32_t(basic_match_state::candidate_for_faction);
-				if (search_for_faction(team_ptrs_by_sz, cur_faction_group, remain_capacity - i, i, j + 1))
+				if (search_for_faction(team_ptrs_by_sz, cur_faction_group, remain_capacity - i, i, j ))
 				{
 					cur_faction_group.push_back(cur_team_ptr);
 					return true;
