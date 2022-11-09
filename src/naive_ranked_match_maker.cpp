@@ -1,5 +1,6 @@
 #include "naive_ranked_match_maker.h"
 #include <algorithm>
+#include <cmath>
 namespace spiritsaway::match_maker
 {
 	naive_ranked_match_maker::naive_ranked_match_maker(const std::uint32_t faction_num, const std::uint32_t faction_team_sz, const std::uint32_t max_team_player_sz, std::uint64_t now_ts, const ranked_match_config& match_config)
