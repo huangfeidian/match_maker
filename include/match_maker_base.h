@@ -41,8 +41,8 @@ namespace spiritsaway::match_maker
 		bool search_for_faction_non_recursive(const std::vector<std::vector< candidate_team*>>& team_ptrs_by_sz, std::vector<candidate_team*>& cur_faction_group,  std::uint32_t remain_capacity,  std::uint32_t cur_team_sz, const std::uint32_t last_choose_idx);
 	public:
 		match_maker_base(const std::uint32_t faction_num, const std::uint32_t faction_team_sz, const std::uint32_t max_team_player_sz, std::uint64_t now_ts);
-		virtual void add_candidate(const team_info& new_team);
-		virtual void remove_candidate(const std::string& tid);
+		virtual std::uint32_t add_candidate(const team_info& new_team);
+		virtual bool remove_candidate(const std::string& tid);
 		virtual std::vector<match_result> make_matchs() = 0;
 		void set_now_ts(std::uint64_t now_ts)
 		{

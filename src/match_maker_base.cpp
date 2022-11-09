@@ -12,31 +12,32 @@ namespace spiritsaway::match_maker
 
 	}
 
-	void match_maker_base::add_candidate(const team_info& new_team)
+	std::uint32_t match_maker_base::add_candidate(const team_info& new_team)
 	{
 		if (new_team.players.size() > m_max_team_player_sz)
 		{
-			return;
+			return __LINE__;
 		}
 		if (new_team.players.empty())
 		{
-			return;
+			return __LINE__;
 		}
 		auto temp_iter = m_sz_for_team.find(new_team.tid);
 		if (temp_iter != m_sz_for_team.end())
 		{
-			return;
+			return __LINE__;
 		}
 		m_sz_for_team[new_team.tid] = new_team.players.size();
 		m_teams_by_sz[new_team.players.size()].push_back(candidate_team{ new_team, 0 , m_now_ts });
+		return 0;
 	}
 
-	void match_maker_base::remove_candidate(const std::string& tid)
+	bool match_maker_base::remove_candidate(const std::string& tid)
 	{
 		auto cur_iter = m_sz_for_team.find(tid);
 		if (cur_iter == m_sz_for_team.end())
 		{
-			return;
+			return false;
 		}
 		auto& cur_team_vec = m_teams_by_sz[cur_iter->second];
 		for (std::uint32_t i = 0; i < cur_team_vec.size(); i++)
@@ -56,6 +57,7 @@ namespace spiritsaway::match_maker
 			}
 		}
 		m_sz_for_team.erase(cur_iter);
+		return true;
 
 	}
 	match_maker_base::~match_maker_base()
