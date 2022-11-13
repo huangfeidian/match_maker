@@ -2,9 +2,10 @@
 
 namespace spiritsaway::match_maker
 {
-	match_maker_base::match_maker_base(const std::uint32_t faction_num, const std::uint32_t faction_team_sz, const std::uint32_t max_team_player_sz, std::uint64_t now_ts)
+	match_maker_base::match_maker_base(const std::uint32_t faction_num, const std::uint32_t faction_team_sz, const std::uint32_t min_team_player_sz, std::uint32_t max_team_player_sz, std::uint64_t now_ts)
 		: m_faction_num(faction_num)
 		, m_faction_team_sz(faction_team_sz)
+		, m_min_team_player_sz(min_team_player_sz)
 		, m_max_team_player_sz(max_team_player_sz)
 		, m_teams_by_sz(max_team_player_sz + 1)
 		, m_now_ts(now_ts)
@@ -15,6 +16,10 @@ namespace spiritsaway::match_maker
 	std::uint32_t match_maker_base::add_candidate(const team_info& new_team)
 	{
 		if (new_team.players.size() > m_max_team_player_sz)
+		{
+			return __LINE__;
+		}
+		if(new_team.players.size() < m_min_team_player_sz)
 		{
 			return __LINE__;
 		}

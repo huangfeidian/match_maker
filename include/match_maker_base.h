@@ -18,6 +18,7 @@ namespace spiritsaway::match_maker
 		const std::uint32_t m_faction_num;
 		const std::uint32_t m_faction_team_sz;
 		const std::uint32_t m_max_team_player_sz;
+		const std::uint32_t m_min_team_player_sz;
 		struct candidate_team : public team_info
 		{
 			std::uint32_t match_state = 0;
@@ -40,7 +41,7 @@ namespace spiritsaway::match_maker
 		bool search_for_faction_recursive(const std::vector<std::vector< candidate_team*>>& team_ptrs_by_sz, std::vector<candidate_team*>& cur_faction_group, const std::uint32_t remain_capacity, const std::uint32_t cur_team_sz, const std::uint32_t last_choose_idx);
 		bool search_for_faction_non_recursive(const std::vector<std::vector< candidate_team*>>& team_ptrs_by_sz, std::vector<candidate_team*>& cur_faction_group,  std::uint32_t remain_capacity,  std::uint32_t cur_team_sz, const std::uint32_t last_choose_idx);
 	public:
-		match_maker_base(const std::uint32_t faction_num, const std::uint32_t faction_team_sz, const std::uint32_t max_team_player_sz, std::uint64_t now_ts);
+		match_maker_base(const std::uint32_t faction_num, const std::uint32_t faction_team_sz, const std::uint32_t min_team_player_sz, const std::uint32_t max_team_player_sz, std::uint64_t now_ts);
 		virtual std::uint32_t add_candidate(const team_info& new_team);
 		virtual bool remove_candidate(const std::string& tid);
 		virtual std::vector<match_result> make_matchs() = 0;

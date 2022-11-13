@@ -7,7 +7,7 @@ using namespace spiritsaway::match_maker;
 
 void unit_test_1()
 {
-	naive_set_match_maker cur_match_maker(2, 1, 1, 0);
+	naive_set_match_maker cur_match_maker(2, 1,1,  1, 0);
 	std::vector<team_info> cur_teams;
 	for (int i = 0; i < 5; i++)
 	{
@@ -35,7 +35,7 @@ void unit_test_1()
 
 void unit_test_2()
 {
-	naive_set_match_maker cur_match_maker(2, 3, 3, 0);
+	naive_set_match_maker cur_match_maker(2, 3,1, 3, 0);
 	std::vector<team_info> cur_teams;
 	std::uint32_t player_counter = 0;
 	for (int i = 0; i < 5; i++)
@@ -64,7 +64,7 @@ void unit_test_2()
 }
 void unit_test_3()
 {
-	naive_set_match_maker cur_match_maker(2, 3, 3, 0);
+	naive_set_match_maker cur_match_maker(2, 3, 1, 3, 0);
 	std::vector<team_info> cur_teams;
 	std::uint32_t player_counter = 0;
 	std::uint32_t team_counter = 0;
@@ -110,7 +110,7 @@ void unit_test_3()
 
 void unit_test_4()
 {
-	naive_set_match_maker cur_match_maker(2, 5, 5, 0);
+	naive_set_match_maker cur_match_maker(2, 5,1, 5, 0);
 	std::vector<team_info> cur_teams;
 	std::uint32_t player_counter = 0;
 	std::uint32_t team_counter = 0;
@@ -159,7 +159,7 @@ void unit_test_4()
 
 void unit_test_5()
 {
-	naive_set_match_maker cur_match_maker(2, 5, 5, 0);
+	naive_set_match_maker cur_match_maker(2, 5, 1, 5, 0);
 	std::vector<team_info> cur_teams;
 	std::uint32_t player_counter = 0;
 	std::uint32_t team_counter = 0;
@@ -185,7 +185,7 @@ void unit_test_5()
 
 void unit_test_6(std::uint32_t faction_team_sz, std::uint32_t max_candidate_team_sz, std::uint32_t team_number)
 {
-	naive_set_match_maker cur_match_maker(2, faction_team_sz, max_candidate_team_sz, 0);
+	naive_set_match_maker cur_match_maker(2, faction_team_sz, 1, max_candidate_team_sz, 0);
 	std::vector<team_info> cur_teams;
 	std::uint32_t player_counter = 0;
 	std::uint32_t team_counter = 0;
