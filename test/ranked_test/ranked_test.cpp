@@ -130,9 +130,9 @@ void unit_test_4()
 {
 		match_base_config cur_base_config;
 	cur_base_config.faction_num = 2;
-	cur_base_config.faction_player_sz = 3;
+	cur_base_config.faction_player_sz = 5;
 	cur_base_config.min_team_player_sz = 1;
-	cur_base_config.max_team_player_sz = 3;
+	cur_base_config.max_team_player_sz = 5;
 	ranked_match_config cur_ranked_config{ 50, 300, 2 };
 	naive_ranked_match_maker cur_match_maker(cur_base_config, 0, cur_ranked_config);
 	std::vector<team_info> cur_teams;
