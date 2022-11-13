@@ -8,7 +8,7 @@ namespace spiritsaway::system::match_maker
 	struct match_base_config
 	{
 		std::uint32_t faction_num;
-		std::uint32_t faction_team_sz;
+		std::uint32_t faction_player_sz;
 		std::uint32_t min_team_player_sz;
 		std::uint32_t max_team_player_sz;
 	};

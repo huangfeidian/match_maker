@@ -34,7 +34,7 @@ namespace spiritsaway::system::match_maker
 				temp_faction.clear();
 				team_ptrs_by_sz[i][j]->match_state = std::uint32_t(basic_match_state::candidate_for_faction);
 				temp_faction.push_back(team_ptrs_by_sz[i][j]);
-				if (search_for_faction(team_ptrs_by_sz, temp_faction, m_base_config.faction_team_sz - i, i, j))
+				if (search_for_faction(team_ptrs_by_sz, temp_faction, m_base_config.faction_player_sz - i, i, j))
 				{
 					faction_result.push_back({});
 					faction_result.back().reserve(temp_faction.size());

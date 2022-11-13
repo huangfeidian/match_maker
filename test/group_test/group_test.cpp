@@ -9,7 +9,7 @@ void unit_test_1()
 {
 	match_base_config cur_base_config;
 	cur_base_config.faction_num = 2;
-	cur_base_config.faction_team_sz = 1;
+	cur_base_config.faction_player_sz = 1;
 	cur_base_config.min_team_player_sz = 1;
 	cur_base_config.max_team_player_sz = 1;
 	naive_set_match_maker cur_match_maker(cur_base_config, 0);
@@ -42,7 +42,7 @@ void unit_test_2()
 {
 	match_base_config cur_base_config;
 	cur_base_config.faction_num = 2;
-	cur_base_config.faction_team_sz = 3;
+	cur_base_config.faction_player_sz = 3;
 	cur_base_config.min_team_player_sz = 1;
 	cur_base_config.max_team_player_sz = 3;
 	naive_set_match_maker cur_match_maker(cur_base_config, 0);
@@ -76,7 +76,7 @@ void unit_test_3()
 {
 	match_base_config cur_base_config;
 	cur_base_config.faction_num = 2;
-	cur_base_config.faction_team_sz = 3;
+	cur_base_config.faction_player_sz = 3;
 	cur_base_config.min_team_player_sz = 1;
 	cur_base_config.max_team_player_sz = 3;
 	naive_set_match_maker cur_match_maker(cur_base_config, 0);
@@ -127,7 +127,7 @@ void unit_test_4()
 {
 	match_base_config cur_base_config;
 	cur_base_config.faction_num = 2;
-	cur_base_config.faction_team_sz = 5;
+	cur_base_config.faction_player_sz = 5;
 	cur_base_config.min_team_player_sz = 1;
 	cur_base_config.max_team_player_sz = 5;
 	naive_set_match_maker cur_match_maker(cur_base_config, 0);
@@ -181,7 +181,7 @@ void unit_test_5()
 {
 	match_base_config cur_base_config;
 	cur_base_config.faction_num = 2;
-	cur_base_config.faction_team_sz = 5;
+	cur_base_config.faction_player_sz = 5;
 	cur_base_config.min_team_player_sz = 1;
 	cur_base_config.max_team_player_sz = 5;
 	naive_set_match_maker cur_match_maker(cur_base_config, 0);
@@ -208,11 +208,11 @@ void unit_test_5()
 }
 
 
-void unit_test_6(std::uint32_t faction_team_sz, std::uint32_t max_candidate_team_sz, std::uint32_t team_number)
+void unit_test_6(std::uint32_t faction_player_sz, std::uint32_t max_candidate_team_sz, std::uint32_t team_number)
 {
 	match_base_config cur_base_config;
 	cur_base_config.faction_num = 2;
-	cur_base_config.faction_team_sz = faction_team_sz;
+	cur_base_config.faction_player_sz = faction_player_sz;
 	cur_base_config.min_team_player_sz = 1;
 	cur_base_config.max_team_player_sz = max_candidate_team_sz;
 	naive_set_match_maker cur_match_maker(cur_base_config, 0);
@@ -248,7 +248,7 @@ void unit_test_6(std::uint32_t faction_team_sz, std::uint32_t max_candidate_team
 	auto end_ts = std::chrono::system_clock::now();
 
 	std::chrono::duration<double> elapsed_seconds = end_ts - begin_ts;
-	std::cout << "elapsed time: " << elapsed_seconds.count() << "s for faction_team_sz " << faction_team_sz << " max_candidate_sz " << max_candidate_team_sz << " team_numbers " << team_number << " result sz " << cur_match_result.size() << std::endl;;
+	std::cout << "elapsed time: " << elapsed_seconds.count() << "s for faction_player_sz " << faction_player_sz << " max_candidate_sz " << max_candidate_team_sz << " team_numbers " << team_number << " result sz " << cur_match_result.size() << std::endl;;
 }
 
 int main()
