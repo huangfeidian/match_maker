@@ -4,6 +4,7 @@ namespace spiritsaway::system::match_maker
 {
 	match_maker_base::match_maker_base(const match_base_config& in_config, std::uint64_t now_ts)
 		: m_base_config(in_config)
+		, m_teams_by_sz(in_config.max_team_player_sz + 1)
 		, m_now_ts(now_ts)
 	{
 
