@@ -3,9 +3,9 @@
 #include <cmath>
 namespace spiritsaway::system::match_maker
 {
-	naive_ranked_match_maker::naive_ranked_match_maker(const std::uint32_t faction_num, const std::uint32_t faction_team_sz, const std::uint32_t min_team_player_sz, const std::uint32_t max_team_player_sz, std::uint64_t now_ts, const ranked_match_config& match_config)
-		: match_maker_base(faction_num, faction_team_sz, min_team_player_sz, max_team_player_sz, now_ts)
-		, m_config(match_config)
+	naive_ranked_match_maker::naive_ranked_match_maker(const match_base_config& in_base_config, std::uint64_t now_ts, const ranked_match_config& in_ranked_config)
+		: match_maker_base(in_base_config, now_ts)
+		, m_ranked_config(in_ranked_config)
 	{
 
 	}
@@ -37,10 +37,10 @@ namespace spiritsaway::system::match_maker
 			return {};
 		}
 
-		int min_score_level = int(std::floor(min_score / m_config.rank_level_gap_score));
-		int max_score_level = int(std::ceil(max_score / m_config.rank_level_gap_score));
-		min_score = min_score_level * m_config.rank_level_gap_score;
-		max_score = max_score_level * m_config.rank_level_gap_score;
+		int min_score_level = int(std::floor(min_score / m_ranked_config.rank_level_gap_score));
+		int max_score_level = int(std::ceil(max_score / m_ranked_config.rank_level_gap_score));
+		min_score = min_score_level * m_ranked_config.rank_level_gap_score;
+		max_score = max_score_level * m_ranked_config.rank_level_gap_score;
 		std::uint32_t level_range_sz = max_score_level - min_score_level + 1;
 		std::vector<std::vector<std::vector< candidate_team*>>> team_ptrs_by_sz_and_level(level_range_sz, std::vector<std::vector< candidate_team*>>(m_teams_by_sz.size()));
 		std::vector<match_result> final_match_results;
@@ -54,9 +54,9 @@ namespace spiritsaway::system::match_maker
 			for (std::uint32_t j = 0; j < m_teams_by_sz[i].size(); j++)
 			{
 				candidate_team* cur_team_ptr = &m_teams_by_sz[i][j];
-				auto cur_team_match_level_tolerance = int((m_now_ts - cur_team_ptr->apply_ts) / m_config.extend_level_tolerance_time_gap);
-				cur_team_match_level_tolerance = std::min(cur_team_match_level_tolerance, int(m_config.max_level_diff_tolerance));
-				int cur_team_match_level = int(cur_team_ptr->rank_score / m_config.rank_level_gap_score);
+				auto cur_team_match_level_tolerance = int((m_now_ts - cur_team_ptr->apply_ts) / m_ranked_config.extend_level_tolerance_time_gap);
+				cur_team_match_level_tolerance = std::min(cur_team_match_level_tolerance, int(m_ranked_config.max_level_diff_tolerance));
+				int cur_team_match_level = int(cur_team_ptr->rank_score / m_ranked_config.rank_level_gap_score);
 				for (int k = std::max(min_score_level, cur_team_match_level - cur_team_match_level_tolerance); k <= std::min(max_score_level, cur_team_match_level + cur_team_match_level_tolerance); k++)
 				{
 					auto& cur_team_vec = team_ptrs_by_sz_and_level[k - min_score_level][cur_team_ptr->players.size()];
@@ -86,7 +86,7 @@ namespace spiritsaway::system::match_maker
 					}
 					temp_faction.clear();
 					team_ptrs_by_sz[i][j]->match_state = std::uint32_t(basic_match_state::candidate_for_faction);
-					if (search_for_faction(team_ptrs_by_sz, temp_faction, m_faction_team_sz - i, i, j))
+					if (search_for_faction(team_ptrs_by_sz, temp_faction, m_base_config.faction_team_sz - i, i, j))
 					{
 						faction_result.push_back({});
 						temp_faction.push_back(team_ptrs_by_sz[i][j]);
@@ -103,14 +103,14 @@ namespace spiritsaway::system::match_maker
 					}
 				}
 			}
-			std::vector<match_result> match_results(faction_result.size() / m_faction_num);
+			std::vector<match_result> match_results(faction_result.size() / m_base_config.faction_num);
 			for (std::uint32_t i = 0; i < match_results.size(); i++)
 			{
-				match_results[i].factions.resize(m_faction_num);
-				for (std::uint32_t j = 0; j < m_faction_num; j++)
+				match_results[i].factions.resize(m_base_config.faction_num);
+				for (std::uint32_t j = 0; j < m_base_config.faction_num; j++)
 				{
-					match_results[i].factions[j].teams.reserve(faction_result[i * m_faction_num + j].size());
-					for (auto one_team_ptr : faction_result[i * m_faction_num + j])
+					match_results[i].factions[j].teams.reserve(faction_result[i * m_base_config.faction_num + j].size());
+					for (auto one_team_ptr : faction_result[i * m_base_config.faction_num + j])
 					{
 						match_results[i].factions[j].teams.push_back(*one_team_ptr);
 						m_sz_for_team.erase(one_team_ptr->tid);
@@ -118,7 +118,7 @@ namespace spiritsaway::system::match_maker
 
 				}
 			}
-			for (std::uint32_t i = match_results.size() * m_faction_num; i < faction_result.size(); i++)
+			for (std::uint32_t i = match_results.size() * m_base_config.faction_num; i < faction_result.size(); i++)
 			{
 				for (auto one_team_ptr : faction_result[i])
 				{

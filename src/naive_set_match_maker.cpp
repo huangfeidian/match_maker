@@ -34,7 +34,7 @@ namespace spiritsaway::system::match_maker
 				temp_faction.clear();
 				team_ptrs_by_sz[i][j]->match_state = std::uint32_t(basic_match_state::candidate_for_faction);
 				temp_faction.push_back(team_ptrs_by_sz[i][j]);
-				if (search_for_faction(team_ptrs_by_sz, temp_faction, m_faction_team_sz - i, i, j))
+				if (search_for_faction(team_ptrs_by_sz, temp_faction, m_base_config.faction_team_sz - i, i, j))
 				{
 					faction_result.push_back({});
 					faction_result.back().reserve(temp_faction.size());
@@ -52,14 +52,14 @@ namespace spiritsaway::system::match_maker
 				}
 			}
 		}
-		std::vector<match_result> match_results(faction_result.size() / m_faction_num);
+		std::vector<match_result> match_results(faction_result.size() / m_base_config.faction_num);
 		for (std::uint32_t i = 0; i < match_results.size(); i++)
 		{
-			match_results[i].factions.resize(m_faction_num);
-			for (std::uint32_t j = 0; j < m_faction_num; j++)
+			match_results[i].factions.resize(m_base_config.faction_num);
+			for (std::uint32_t j = 0; j < m_base_config.faction_num; j++)
 			{
-				match_results[i].factions[j].teams.reserve(faction_result[i * m_faction_num + j].size());
-				for (auto one_team_ptr : faction_result[i * m_faction_num + j])
+				match_results[i].factions[j].teams.reserve(faction_result[i * m_base_config.faction_num + j].size());
+				for (auto one_team_ptr : faction_result[i * m_base_config.faction_num + j])
 				{
 					match_results[i].factions[j].teams.push_back(*one_team_ptr);
 					m_sz_for_team.erase(one_team_ptr->tid);
@@ -67,7 +67,7 @@ namespace spiritsaway::system::match_maker
 				
 			}
 		}
-		for (std::uint32_t i = match_results.size() * m_faction_num; i < faction_result.size(); i++)
+		for (std::uint32_t i = match_results.size() * m_base_config.faction_num; i < faction_result.size(); i++)
 		{
 			for (auto one_team_ptr : faction_result[i])
 			{

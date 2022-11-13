@@ -7,8 +7,13 @@ using namespace spiritsaway::system::match_maker;
 
 void unit_test_1()
 {
-	naive_ranked_match_maker::ranked_match_config cur_config{ 50, 300, 2 };
-	naive_ranked_match_maker cur_match_maker(2, 1, 1, 1, 0, cur_config);
+	match_base_config cur_base_config;
+	cur_base_config.faction_num = 2;
+	cur_base_config.faction_team_sz = 1;
+	cur_base_config.min_team_player_sz = 1;
+	cur_base_config.max_team_player_sz = 1;
+	ranked_match_config cur_ranked_config{ 50, 300, 2 };
+	naive_ranked_match_maker cur_match_maker(cur_base_config, 0, cur_ranked_config);
 	std::vector<team_info> cur_teams;
 	for (int i = 0; i < 5; i++)
 	{
@@ -36,8 +41,13 @@ void unit_test_1()
 
 void unit_test_2()
 {
-	naive_ranked_match_maker::ranked_match_config cur_config{ 50, 300, 2 };
-	naive_ranked_match_maker cur_match_maker(2, 3, 1, 3, 0, cur_config);
+	match_base_config cur_base_config;
+	cur_base_config.faction_num = 2;
+	cur_base_config.faction_team_sz = 3;
+	cur_base_config.min_team_player_sz = 1;
+	cur_base_config.max_team_player_sz = 3;
+	ranked_match_config cur_ranked_config{ 50, 300, 2 };
+	naive_ranked_match_maker cur_match_maker(cur_base_config, 0, cur_ranked_config);
 	std::vector<team_info> cur_teams;
 	std::uint32_t player_counter = 0;
 	for (int i = 0; i < 5; i++)
@@ -66,8 +76,13 @@ void unit_test_2()
 }
 void unit_test_3()
 {
-	naive_ranked_match_maker::ranked_match_config cur_config{ 50, 300, 2 };
-	naive_ranked_match_maker cur_match_maker(2, 3,1,  3, 0, cur_config);
+	match_base_config cur_base_config;
+	cur_base_config.faction_num = 2;
+	cur_base_config.faction_team_sz = 3;
+	cur_base_config.min_team_player_sz = 1;
+	cur_base_config.max_team_player_sz = 3;
+	ranked_match_config cur_ranked_config{ 50, 300, 2 };
+	naive_ranked_match_maker cur_match_maker(cur_base_config, 0, cur_ranked_config);
 	std::vector<team_info> cur_teams;
 	std::uint32_t player_counter = 0;
 	std::uint32_t team_counter = 0;
@@ -113,8 +128,13 @@ void unit_test_3()
 
 void unit_test_4()
 {
-	naive_ranked_match_maker::ranked_match_config cur_config{ 50, 300, 2 };
-	naive_ranked_match_maker cur_match_maker(2, 5,1, 5, 0, cur_config);
+		match_base_config cur_base_config;
+	cur_base_config.faction_num = 2;
+	cur_base_config.faction_team_sz = 3;
+	cur_base_config.min_team_player_sz = 1;
+	cur_base_config.max_team_player_sz = 3;
+	ranked_match_config cur_ranked_config{ 50, 300, 2 };
+	naive_ranked_match_maker cur_match_maker(cur_base_config, 0, cur_ranked_config);
 	std::vector<team_info> cur_teams;
 	std::uint32_t player_counter = 0;
 	std::uint32_t team_counter = 0;
@@ -163,8 +183,13 @@ void unit_test_4()
 
 void unit_test_5()
 {
-	naive_ranked_match_maker::ranked_match_config cur_config{ 50, 300, 2 };
-	naive_ranked_match_maker cur_match_maker(2, 5,1, 5, 0, cur_config);
+	match_base_config cur_base_config;
+	cur_base_config.faction_num = 2;
+	cur_base_config.faction_team_sz = 5;
+	cur_base_config.min_team_player_sz = 1;
+	cur_base_config.max_team_player_sz = 5;
+	ranked_match_config cur_ranked_config{ 50, 300, 2 };
+	naive_ranked_match_maker cur_match_maker(cur_base_config, 0, cur_ranked_config);
 	std::vector<team_info> cur_teams;
 	std::uint32_t player_counter = 0;
 	std::uint32_t team_counter = 0;
@@ -190,8 +215,13 @@ void unit_test_5()
 
 void unit_test_6(std::uint32_t faction_team_sz, std::uint32_t max_candidate_team_sz, std::uint32_t team_number)
 {
-	naive_ranked_match_maker::ranked_match_config cur_config{ 50, 300, 2 };
-	naive_ranked_match_maker cur_match_maker(2, faction_team_sz, 1, max_candidate_team_sz, 0, cur_config);
+	match_base_config cur_base_config;
+	cur_base_config.faction_num = 2;
+	cur_base_config.faction_team_sz = faction_team_sz;
+	cur_base_config.min_team_player_sz = 1;
+	cur_base_config.max_team_player_sz = max_candidate_team_sz;
+	ranked_match_config cur_ranked_config{ 50, 300, 2 };
+	naive_ranked_match_maker cur_match_maker(cur_base_config, 0, cur_ranked_config);
 	std::vector<team_info> cur_teams;
 	std::uint32_t player_counter = 0;
 	std::uint32_t team_counter = 0;
@@ -229,8 +259,13 @@ void unit_test_6(std::uint32_t faction_team_sz, std::uint32_t max_candidate_team
 
 void unit_test_7()
 {
-	naive_ranked_match_maker::ranked_match_config cur_config{ 50, 300, 2 };
-	naive_ranked_match_maker cur_match_maker(2, 5, 1, 5, 0, cur_config);
+	match_base_config cur_base_config;
+	cur_base_config.faction_num = 2;
+	cur_base_config.faction_team_sz = 5;
+	cur_base_config.min_team_player_sz = 1;
+	cur_base_config.max_team_player_sz = 5;
+	ranked_match_config cur_ranked_config{ 50, 300, 2 };
+	naive_ranked_match_maker cur_match_maker(cur_base_config, 0, cur_ranked_config);
 	std::vector<team_info> cur_teams;
 	std::uint32_t player_counter = 0;
 	std::uint32_t team_counter = 0;
@@ -265,8 +300,13 @@ void unit_test_7()
 
 void unit_test_8(std::uint32_t faction_team_sz, std::uint32_t max_candidate_team_sz, std::uint32_t team_number)
 {
-	naive_ranked_match_maker::ranked_match_config cur_config{ 50, 300, 2 };
-	naive_ranked_match_maker cur_match_maker(2, faction_team_sz, 1, max_candidate_team_sz, 0, cur_config);
+	match_base_config cur_base_config;
+	cur_base_config.faction_num = 2;
+	cur_base_config.faction_team_sz = faction_team_sz;
+	cur_base_config.min_team_player_sz = 1;
+	cur_base_config.max_team_player_sz = max_candidate_team_sz;
+	ranked_match_config cur_ranked_config{ 50, 300, 2 };
+	naive_ranked_match_maker cur_match_maker(cur_base_config, 0, cur_ranked_config);
 	std::vector<team_info> cur_teams;
 	std::uint32_t player_counter = 0;
 	std::uint32_t team_counter = 0;
