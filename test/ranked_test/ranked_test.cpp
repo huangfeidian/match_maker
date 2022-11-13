@@ -3,7 +3,7 @@
 #include <iostream>
 #include <chrono>
 using namespace std;
-using namespace spiritsaway::match_maker;
+using namespace spiritsaway::system::match_maker;
 
 void unit_test_1()
 {

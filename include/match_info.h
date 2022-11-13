@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-namespace spiritsaway::match_maker
+namespace spiritsaway::system::match_maker
 {
 	struct player_info
 	{

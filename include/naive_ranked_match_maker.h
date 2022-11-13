@@ -1,6 +1,6 @@
 #pragma once
 #include "match_maker_base.h"
-namespace spiritsaway::match_maker
+namespace spiritsaway::system::match_maker
 {
 	class naive_ranked_match_maker: public match_maker_base
 	{

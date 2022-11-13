@@ -1,6 +1,6 @@
 #include "match_maker_base.h"
 
-namespace spiritsaway::match_maker
+namespace spiritsaway::system::match_maker
 {
 	match_maker_base::match_maker_base(const std::uint32_t faction_num, const std::uint32_t faction_team_sz, const std::uint32_t min_team_player_sz, std::uint32_t max_team_player_sz, std::uint64_t now_ts)
 		: m_faction_num(faction_num)

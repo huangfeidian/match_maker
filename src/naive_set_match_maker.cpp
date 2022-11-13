@@ -1,6 +1,6 @@
 #include "naive_set_match_maker.h"
 #include <algorithm>
-namespace spiritsaway::match_maker
+namespace spiritsaway::system::match_maker
 {
 
 

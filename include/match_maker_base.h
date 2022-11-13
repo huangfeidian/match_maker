@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include <memory>
 
-namespace spiritsaway::match_maker
+namespace spiritsaway::system::match_maker
 {
 	class match_maker_base
 	{
