@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <cstdint>
 namespace spiritsaway::system::match_maker
 {
 	struct player_info
