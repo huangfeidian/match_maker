@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if(MSVC)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++latest /bigobj")
 endif(MSVC)
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include)
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # add log support
 find_package(spdlog CONFIG REQUIRED)
@@ -17,8 +17,8 @@ INCLUDE_DIRECTORIES(${spdlog_include_dirs})
 find_package(nlohmann_json CONFIG REQUIRED)
 
 
-file(GLOB PROJECT_SRCS  "${PROJECT_SOURCE_DIR}/src/*.cpp")
-file(GLOB PROJECT_HEADERS  "${PROJECT_SOURCE_DIR}/include/*.h")
+file(GLOB PROJECT_SRCS  "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+file(GLOB PROJECT_HEADERS  "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
 add_library(${PROJECT_NAME} ${PROJECT_SRCS} ${PROJECT_HEADERS})
 target_link_libraries(${PROJECT_NAME} INTERFACE nlohmann_json::nlohmann_json spdlog::spdlog)
 
@@ -47,7 +47,7 @@ install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}Targets
     RUNTIME DESTINATION bin
   )
 
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/ DESTINATION include/${PROJECT_NAME})
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/ DESTINATION include/${PROJECT_NAME})
 
 install(EXPORT ${PROJECT_NAME}Targets
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
