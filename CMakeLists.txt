@@ -21,6 +21,7 @@ file(GLOB PROJECT_SRCS  "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 file(GLOB PROJECT_HEADERS  "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
 add_library(${PROJECT_NAME} ${PROJECT_SRCS} ${PROJECT_HEADERS})
 target_link_libraries(${PROJECT_NAME} INTERFACE nlohmann_json::nlohmann_json spdlog::spdlog)
+target_include_directories(${CMAKE_PROJECT_NAME} INTERFACE $<INSTALL_INTERFACE:include>)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   set(IS_TOPLEVEL_PROJECT TRUE)
